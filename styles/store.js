@@ -2,8 +2,8 @@ import { createStore, applyMiddleware } from "redux"
 import { createWrapper } from "next-redux-wrapper"
 import createMiddleware from "redux-saga"
 import { composeWithDevTools} from "redux-devtools-extension"
-import rootReducer from "../store/reducers"
-import rootSaga from "../store/sagas"
+import rootReducer from "../sub-next-react-18/store/reducers"
+import rootSaga from "../sub-next-react-18/store/sagas"
 
 const sagaMiddleware = createMiddleware()
 

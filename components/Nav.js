@@ -1,11 +1,9 @@
 import React,{useState, useEffect} from 'react'
-
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
-
 import Container from '@mui/material/Container';
 import Avatar from '@mui/material/Avatar';
 import Tooltip from '@mui/material/Tooltip';
@@ -102,9 +100,19 @@ export function Nav(){
                   break;
     }
   }
-
+  const handleAuth = (value) => {
+    alert('handleAuth '+value)
+    switch(value) {
+      case '회원가입':  window.location.href='/user/join' 
+                      break;
+      case '로그인':  window.location.href='/user/login' 
+                      break;
+      default: window.location.href='/'
+                      break;
+    }
+  }
   return (
-    <AppBar position="static" style= {{marginBottom:"70px"}}> 
+    <AppBar position="static" style={{marginBottom:"70px"}}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <Typography
@@ -164,11 +172,11 @@ export function Nav(){
                 horizontal: 'right',
               }}
               open={Boolean(anchorElUser)}
-              onClose={handleCloseUserMenu}
+              onClose={handleAuth}
             >
-              {preSettings.map((setting) => (
-                <MenuItem key={setting}>
-                  <Typography textAlign="center" onClick={()=>handleCloseUserMenu(setting)}>{setting}</Typography>
+              {preSettings.map((setting) => ( // 회원가입, 로그인
+                <MenuItem key={setting} >
+                  <Typography textAlign="center" onClick={()=>handleAuth(setting)}>{setting}</Typography>
                 </MenuItem>
               ))}
             </Menu>

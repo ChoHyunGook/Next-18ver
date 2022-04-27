@@ -15,16 +15,7 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Head from 'next/head';
 const theme = createTheme();
-const UserRegister = ({}) =>{
-    const [user, setUser] =useState({
-        userid:'', password:'', email:'', name:'', phone:'', birth:'', address:''
-    })
-    const dispatch = useDispatch()
-    const handleChange = e =>{
-        e.preventDefault()
-        const{name, value} = e.target;
-        setUser({...user,[name]: value})
-    }
+const UserJoin = ({ onSubmit, onChange, form }) =>{
   return (
     <ThemeProvider theme={theme}>
     <Head>
@@ -46,37 +37,32 @@ const UserRegister = ({}) =>{
           <Typography component="h1" variant="h5">
             회원가입
           </Typography>
-          <Box component="form" noValidate onSubmit={
-            e => {
-                e.preventDefault()
-                dispatch(userActions.joinRequest(user))
-                setUser({
-                    userid:'', password:'', email:'', name:'', phone:'', birth:'', address:''
-                })
-            }
-        } sx={{ mt: 3 }}>
+          <form onSubmit={ onSubmit }>
+          <Box component="form" noValidate onSubmit={ onSubmit } sx={{ mt: 3 }}>
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6} >
                 <TextField
                   autoComplete="given-name"
-                  name="firstName"
+                  name="userid"
                   required
                   fullWidth
-                  id="firstName"
-                  label="First Name"
+                  id="userid"
+                  label="사용자 ID"
                   autoFocus
-                  onChange={handleChange}
+                  onChange={onChange}
+                  value = {form.userid}
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
                 <TextField
                   required
                   fullWidth
-                  id="lastName"
-                  label="Last Name"
-                  name="lastName"
+                  id="name"
+                  label="이름"
+                  name="name"
                   autoComplete="family-name"
-                  onChange={handleChange}
+                  onChange={onChange}
+                  value = {form.name}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -84,10 +70,11 @@ const UserRegister = ({}) =>{
                   required
                   fullWidth
                   id="email"
-                  label="Email Address"
+                  label="이메일"
                   name="email"
                   autoComplete="email"
-                  onChange={handleChange}
+                  onChange={onChange}
+                  value = {form.email}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -95,13 +82,49 @@ const UserRegister = ({}) =>{
                   required
                   fullWidth
                   name="password"
-                  label="Password"
+                  label="비밀번호"
                   type="password"
                   id="password"
-                  autoComplete="new-password"
-                  onChange={handleChange}
+                  onChange={onChange}
+                  value = {form.password}
                 />
               </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  required
+                  fullWidth
+                  name="phone"
+                  label="전화번호"
+                  type="text"
+                  id="phone"
+                  onChange={onChange}
+                  value = {form.phone}
+                />
+              </Grid>
+              <Grid item xs={12}>
+              <TextField
+                required
+                fullWidth
+                name="birth"
+                label="생년월일"
+                type="text"
+                id="birth"
+                onChange={onChange}
+                value = {form.birth}
+              />
+            </Grid>
+            <Grid item xs={12}>
+            <TextField
+              required
+              fullWidth
+              name="address"
+              label="주소"
+              type="text"
+              id="address"
+              onChange={onChange}
+              value = {form.address}
+            />
+          </Grid>
               <Grid item xs={12}>
                 <FormControlLabel
                   control={<Checkbox value="allowExtraEmails" color="primary" />}
@@ -125,10 +148,11 @@ const UserRegister = ({}) =>{
               </Grid>
             </Grid>
           </Box>
+          </form>
         </Box>
       </Container>
     </ThemeProvider>
   );
 }
 
-export default UserRegister
+export default UserJoin

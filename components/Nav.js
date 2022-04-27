@@ -47,9 +47,9 @@ export function Nav(){
 
   const handleCloseUserMenu = (value) => {
     switch(value){
-      case '회원가입' : window.location.href='/user/join' 
+      case '회원가입' : window.location.href='/user/userJoin' 
       break;
-      case '로그인' : window.location.href='/user/login' 
+      case '로그인' : window.location.href='/user/userLogin' 
       break;
     }
     setAnchorElUser(null);
@@ -60,10 +60,10 @@ export function Nav(){
   useEffect(() => {
     const loginUser = localStorage.getItem("loginUser")
     if (loginUser === null) {
-      setUserUrls(["/user/join","/user/login"])
+      setUserUrls(["/user/userJoin","/user/userLogin"])
       setUserSubTitle(["회원가입","로그인"])
     } else {
-      setUserUrls(["/user/logout","/user/profile","/user/modifyUser","/user/delUser","user/getUsers"])
+      setUserUrls(["/user/userRemove","/user/userProfile","/user/userModify","/user/userRemove","user/userList"])
       setUserSubTitle(["로그아웃","프로필","회원수정","회원탈퇴","회원목록"])
     }
   }, [])
@@ -103,9 +103,9 @@ export function Nav(){
   const handleAuth = (value) => {
     alert('handleAuth '+value)
     switch(value) {
-      case '회원가입':  window.location.href='/user/join' 
+      case '회원가입':  window.location.href='/user/userJoin' 
                       break;
-      case '로그인':  window.location.href='/user/login' 
+      case '로그인':  window.location.href='/user/userLogin' 
                       break;
       default: window.location.href='/'
                       break;
